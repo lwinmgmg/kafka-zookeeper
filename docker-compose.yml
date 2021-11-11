@@ -1,0 +1,20 @@
+version: '3'
+# This is for testing purpose. So you cannot change or add username('admin') and password('admin-secret')
+services:
+  kafka:
+    container_name: kafka
+    image: lwinmgmg/kafka-zookeeper:latest
+    ports:
+      - 9092:9092
+      - 2181:2181
+  kafdrop:
+    container_name: kafdrop
+    image: obsidiandynamics/kafdrop
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "kafka:9092"
+      KAFKA_PROPERTIES: 'c2VjdXJpdHkucHJvdG9jb2w9U0FTTF9QTEFJTlRFWFQKc2FzbC5tZWNoYW5pc209UExBSU4Kc2Fz bC5qYWFzLmNvbmZpZz1vcmcuYXBhY2hlLmthZmthLmNvbW1vbi5zZWN1cml0eS5wbGFpbi5QbGFp bkxvZ2luTW9kdWxlIHJlcXVpcmVkIHVzZXJuYW1lPSJhZG1pbiIgcGFzc3dvcmQ9ImFkbWluLXNl Y3JldCI7Cg=='
+      JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+    depends_on:
+      - kafka
