@@ -5,7 +5,7 @@ RUN apk update \
 
 WORKDIR /build
 
-RUN wget https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz
+RUN wget https://github.com/lwinmgmg/kafka-zookeeper/releases/download/0.0.1/kafka_2.12-3.3.1.tgz
 
 RUN apk add --no-cache tar \
             build-base
@@ -13,7 +13,7 @@ RUN apk add --no-cache tar \
 RUN apk add bash \
             openjdk11
 
-RUN tar -xvf kafka_2.13-3.0.0.tgz && rm kafka_2.13-3.0.0.tgz && mv kafka_2.13-3.0.0 kafka
+RUN tar -xvf kafka_2.12-3.3.1.tgz && rm kafka_2.12-3.3.1.tgz && ls -ahl && mv kafka_2.12-3.3.1 kafka
 
 ENV KAFKA_CONFIG_DIR=/build/kafka/config
 
